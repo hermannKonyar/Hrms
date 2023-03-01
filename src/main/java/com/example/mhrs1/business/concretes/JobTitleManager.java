@@ -30,4 +30,9 @@ public class JobTitleManager implements JobTitleService {
         this.jobTitleDao.save(jobTitle);
     }
 
+    @Override
+    public JobTitle getById(int id) {
+        return this.jobTitleDao.findById(id).get();
+    }
+
 }

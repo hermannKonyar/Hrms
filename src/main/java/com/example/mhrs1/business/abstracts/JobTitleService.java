@@ -9,4 +9,6 @@ public interface JobTitleService {
     List<JobTitle> getAll();
 
     public void postData(JobTitle jobTitle);
+
+    JobTitle getById(int id);
 }

@@ -24,4 +24,9 @@ public class JobTitleController {
     public void postData(JobTitle jobTitle){
         jobTitleService.postData(jobTitle);
     }
+
+    @GetMapping("/getById")
+    public JobTitle getById(int id){
+        return jobTitleService.getById(id);
+    }
 }
