@@ -1,11 +1,12 @@
 package com.example.mhrs1.entities.concrtetes;
 
 
-import jakarta.persistence.*;
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
-@Table(name="JobTitle")
+@Table(name="job_title")
 @Entity()
 public class JobTitle {
 

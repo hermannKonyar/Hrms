@@ -4,6 +4,7 @@ import com.example.mhrs1.business.abstracts.JobTitleService;
 import com.example.mhrs1.entities.concrtetes.JobTitle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,5 +19,9 @@ public class JobTitleController {
     @GetMapping("/getAll")
     public List<JobTitle> getAll(){
         return jobTitleService.getAll();
+    }
+    @PostMapping("/postData")
+    public void postData(JobTitle jobTitle){
+        jobTitleService.postData(jobTitle);
     }
 }

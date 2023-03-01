@@ -7,4 +7,6 @@ import java.util.List;
 public interface JobTitleService {
 
     List<JobTitle> getAll();
+
+    public void postData(JobTitle jobTitle);
 }
