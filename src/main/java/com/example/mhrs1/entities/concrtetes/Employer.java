@@ -1,31 +1,35 @@
 package com.example.mhrs1.entities.concrtetes;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import springfox.documentation.annotations.ApiIgnore;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Data
-@Table(name="employers")
+@Table(name = "employers")
 @Entity()
-public class Employer {
+public class Employer extends User {
     @Id
     @ApiModelProperty(required = false, hidden = true)
     @GeneratedValue
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
+    @NotBlank
+    @Column(name = "name")
+    private String name;
+
+    @NotBlank
+    @NotEmpty
+    @Column(name = "surname")
+    private String surname;
+
+    @NotBlank
+    @Column(name = "company_name")
+    private String companyName;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @Column(name="job_id")
-    private List<JobTitle> jobTitle;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
-    private User user;
 }

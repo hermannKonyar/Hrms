@@ -1,14 +1,14 @@
 package com.example.mhrs1.business.concretes;
 
+
 import com.example.mhrs1.business.abstracts.EmployeService;
 import com.example.mhrs1.core.utilities.results.*;
 import com.example.mhrs1.dataAccess.abstracts.EmployeDao;
 import com.example.mhrs1.entities.concrtetes.Employe;
-
-import org.apache.commons.validator.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -28,17 +28,28 @@ public class EmployeManager implements EmployeService {
     }
 
     @Override
-    public Result postData(Employe employe) {
+    public Result postData(Employe employe) throws RemoteException {
 
         String regexPattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}";
-        boolean check=patternMatches(employe.getUser().getEMail(), regexPattern);
-        if(check){
-            this.employeDao.save(employe);
-            return new SuccessResult("Data Eklendi");
+        boolean check=patternMatches(employe.getEMail(), regexPattern);
+
+
+
+        try{
+            if(check){
+                this.employeDao.save(employe);
+                return new SuccessResult("Data Eklendi");
+            }
+            else{
+                return new ErrorResult("Uygunsuz Email");
+            }
         }
-        else{
-            return new ErrorResult("Uygunsuz Email");
+        catch(Exception ex){
+            return new ErrorResult("Girdiğiniz Email veya TcNo kayıtlıdır.");
         }
+
+
+
 
     }
 

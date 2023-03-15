@@ -23,7 +23,7 @@ public class EmployerController {
 
     @PostMapping("/postData")
     public Result postData(@RequestBody Employer employer){
-        employersService.postData(employer);
-        return new SuccessResult("Data Eklendi");
+        Result result =employersService.postData(employer);
+        return result;
     }
 }

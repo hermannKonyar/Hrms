@@ -16,9 +16,9 @@ public class HrmsPersonel {
     @Column(name="id")
     private int id;
 
+    @Column(name="tcno")
+    private int tcNo;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
-    private User user;
+
 }

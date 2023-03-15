@@ -7,9 +7,9 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@Table(name="job_title")
+@Table(name="job_title",uniqueConstraints={@UniqueConstraint(columnNames = {"name"})})
 @Entity()
-public class JobTitle {
+public class JobPosition {
 
     @Id
     @GeneratedValue
@@ -17,6 +17,7 @@ public class JobTitle {
     @ApiModelProperty(required = false, hidden = true)
     private int id;
 
-    @Column(name="name")
+
+    @Column(name="name",unique = true)
     private String name;
 }

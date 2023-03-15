@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @Table(name="candidate")
 @Entity()
-public class Candidate {
+public class Candidate extends User {
     @Id
     @GeneratedValue
     @Column(name="id")
@@ -23,7 +23,8 @@ public class Candidate {
     @Column(name="dogum_gunu")
     private Date dogumGunu;
 
-    @OneToOne()
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
-    private User user;
+    @Column(name = "Tc_No",unique = true)
+    private Long tcNo;
+
+
 }

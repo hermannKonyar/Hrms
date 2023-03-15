@@ -4,7 +4,7 @@ import com.example.mhrs1.business.abstracts.JobTitleService;
 import com.example.mhrs1.core.utilities.results.DataResult;
 import com.example.mhrs1.core.utilities.results.Result;
 import com.example.mhrs1.core.utilities.results.SuccessResult;
-import com.example.mhrs1.entities.concrtetes.JobTitle;
+import com.example.mhrs1.entities.concrtetes.JobPosition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,19 +20,19 @@ public class JobTitleController {
     private JobTitleService jobTitleService;
 
     @GetMapping("/getAll")
-    public DataResult<List<JobTitle>> getAll(){
+    public DataResult<List<JobPosition>> getAll(){
         return this.jobTitleService.getAll();
     }
     @PostMapping("/postData")
-    public Result postData(JobTitle jobTitle){
-        jobTitleService.postData(jobTitle);
-        return new SuccessResult("Data Eklendi");
+    public Result postData(JobPosition jobTitle){
+        Result result =jobTitleService.postData(jobTitle);
+        return result;
     }
 
 
 
     @GetMapping("/getById")
-    public JobTitle getById(int id){
+    public JobPosition getById(int id){
         return jobTitleService.getById(id);
     }
 }

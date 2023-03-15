@@ -19,6 +19,7 @@ public class UserController {
 
     @PostMapping("/postData")
     public Result postData( @RequestParam User user){
+
         this.userService.postData(user);
         return new SuccessResult("Data Eklendi");
     }
