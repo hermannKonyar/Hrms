@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Table(name="employes",uniqueConstraints={@UniqueConstraint(columnNames = {"Tc_No"})})
+@Table(name="employess",uniqueConstraints={@UniqueConstraint(columnNames = {"Tc_No"})})
 @Entity()
 public class Employe extends User {
 
@@ -25,12 +25,13 @@ public class Employe extends User {
     @Column(name="name")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "Soyad boş bırakılamaz!")
     @NotEmpty
-    @Column(name="surname")
+    @Column(name="surname",nullable = false)
     private String surname;
 
 
+    @NotBlank
     @Column(name = "Tc_No",unique = true)
     private Long tcNo;
 

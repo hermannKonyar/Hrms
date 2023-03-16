@@ -31,5 +31,9 @@ public class Employer extends User {
     @Column(name = "company_name")
     private String companyName;
 
+    @NotBlank
+    @Column(name = "web_site")
+    private String webSite;
+
 
 }

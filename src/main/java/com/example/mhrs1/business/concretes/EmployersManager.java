@@ -1,6 +1,7 @@
 package com.example.mhrs1.business.concretes;
 
 import com.example.mhrs1.business.abstracts.EmployersService;
+import com.example.mhrs1.core.utilities.hrmsValidation.ValidationService;
 import com.example.mhrs1.core.utilities.results.*;
 import com.example.mhrs1.dataAccess.abstracts.EmployerDao;
 import com.example.mhrs1.entities.concrtetes.Employe;
@@ -16,6 +17,8 @@ import static com.example.mhrs1.business.concretes.EmployeManager.patternMatches
 public class EmployersManager implements EmployersService {
 
     private EmployerDao employerDao;
+    @Autowired
+    private ValidationService validationService;
     @Autowired
     public EmployersManager(EmployerDao employerDao) {
         this.employerDao = employerDao;
@@ -36,12 +39,13 @@ public class EmployersManager implements EmployersService {
 
 
 
+
         try{
-            if(check&&check1){
+            if(check&&check1&&validationService.emailValidation()&&validationService.hrmsValidation()){
                 this.employerDao.save(employer);
-                return new SuccessResult("Data Eklendi");
+                return new SuccessResult("Kayıt doğrulandı.");
             } else{
-                return new ErrorResult("Uygunsuz Email");
+                return new ErrorResult("Şirket ismiyle aynı domain ismine sahip olmalı.");
             }
         }
         catch(Exception ex){

@@ -36,11 +36,11 @@ public class JobAdver {
     @Column(name = "free_position_amount")
     private int freePositionAmount;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employer_id")
     private Employer employer;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_title_id")
     private JobPosition jobTitle;
 

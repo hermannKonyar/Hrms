@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -25,13 +26,16 @@ public class User {
     private int id;
 
 
+    @NotBlank
     @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
     @Column(name = "e_mail",unique = true)
     private String eMail;
 
+    @NotBlank
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name="dogum_gunu")
     private Date dogumGunu;
+    @NotBlank
     @Column(name="password")
     private String password;
 

@@ -13,24 +13,25 @@ import java.rmi.RemoteException;
 import java.util.List;
 @Service
 public class JobAdverManager implements JobAdverService {
+    @Autowired
     private JobAdverDao jobAdverDao;
 
-    @Autowired
-    public JobAdverManager(EmployeDao employeDao) {
-        this.jobAdverDao = jobAdverDao;
-    }
+    //@Autowired
+     //public JobAdverManager(EmployeDao employeDao) {
+       // this.jobAdverDao = jobAdverDao;
+    //}
 
 
     @Override
     public DataResult<List<JobAdver>> getAll() {
-        return new SuccessDataResult<>("Data Listelendi.", this.jobAdverDao.findAll());
+        return new SuccessDataResult<>("Data Listelendi.", jobAdverDao.findAll());
     }
 
     @Override
     public Result postData(JobAdver jobAdver) throws RemoteException {
 
 
-        this.jobAdverDao.save(jobAdver);
+        jobAdverDao.save(jobAdver);
         return new SuccessResult("Data Eklendi");
 
 

@@ -7,7 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@Table(name="job_title",uniqueConstraints={@UniqueConstraint(columnNames = {"name"})})
+@Table(name="job_position",uniqueConstraints={@UniqueConstraint(columnNames = {"name"})})
 @Entity()
 public class JobPosition {
 
