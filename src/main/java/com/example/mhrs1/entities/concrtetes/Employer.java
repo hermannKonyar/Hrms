@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.Size;
 
 @Data
 @Table(name = "employers")
@@ -25,6 +25,7 @@ public class Employer extends User {
     @NotBlank
     @NotEmpty
     @Column(name = "surname")
+    @Size(min=1)
     private String surname;
 
     @NotBlank

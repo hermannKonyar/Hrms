@@ -14,4 +14,13 @@ public interface JobAdverService {
     Result postData(JobAdver jobAdver) throws RemoteException;
 
     JobAdver getById(int id);
+
+    DataResult<List<JobAdver>> getStatusTrue();
+    DataResult<List<JobAdver>> getStatusFalse();
+
+    DataResult<List<JobAdver>> getCompanyAdver(String companyName);
+
+    DataResult<List<JobAdver>> getActiveJobAdvertisementOrderedByDesc();
+
+    DataResult updateAdverStatus(int id,boolean bool);
 }

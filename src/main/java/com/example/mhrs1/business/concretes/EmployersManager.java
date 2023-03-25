@@ -37,20 +37,25 @@ public class EmployersManager implements EmployersService {
         boolean check=patternMatches(employer.getEMail(), regexPattern);
         boolean check1 =patternMatches(employer.getEMail(),regexPattern1);
 
-
-
-
-        try{
-            if(check&&check1&&validationService.emailValidation()&&validationService.hrmsValidation()){
-                this.employerDao.save(employer);
-                return new SuccessResult("Kayıt doğrulandı.");
-            } else{
-                return new ErrorResult("Şirket ismiyle aynı domain ismine sahip olmalı.");
+        if(employer.getName()!=null && employer.getSurname()!=null && employer.getSurname()!=""){
+            try{
+                if(check&&check1&&validationService.emailValidation()&&validationService.hrmsValidation()){
+                    this.employerDao.save(employer);
+                    return new SuccessResult("Kayıt doğrulandı.");
+                } else{
+                    return new ErrorResult("Şirket ismiyle aynı domain ismine sahip olmalı.");
+                }
+            }
+            catch(Exception ex){
+                return new ErrorResult("Girdiğiniz Email kayıtlıdır.");
             }
         }
-        catch(Exception ex){
-            return new ErrorResult("Girdiğiniz Email kayıtlıdır.");
+        else{
+            return new ErrorResult("Eksik alanlar mevcut");
         }
+
+
+
     }
 
     @Override

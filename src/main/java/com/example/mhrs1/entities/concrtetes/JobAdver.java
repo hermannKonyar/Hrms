@@ -1,6 +1,7 @@
 package com.example.mhrs1.entities.concrtetes;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -40,6 +41,7 @@ public class JobAdver {
     @JoinColumn(name = "employer_id")
     private Employer employer;
 
+    @NotEmpty
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_title_id")
     private JobPosition jobTitle;

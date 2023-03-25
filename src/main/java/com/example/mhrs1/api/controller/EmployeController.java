@@ -3,6 +3,7 @@ package com.example.mhrs1.api.controller;
 import com.example.mhrs1.business.abstracts.EmployeService;
 import com.example.mhrs1.core.utilities.results.DataResult;
 import com.example.mhrs1.core.utilities.results.Result;
+import com.example.mhrs1.dataAccess.abstracts.CandidateDao;
 import com.example.mhrs1.entities.concrtetes.Employe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class EmployeController {
     @Autowired
     private EmployeService employeService;
 
+    @Autowired
+    private CandidateDao candidateDao;
+
     @GetMapping("/getAll")
     public DataResult<List<Employe>> getAll(){
         return this.employeService.getAll();
@@ -29,5 +33,9 @@ public class EmployeController {
 
         Result result =employeService.postData(employe);
         return result;
+    }
+    @PostMapping("candidate")
+    public Object getCandidate(){
+        return candidateDao.findAll();
     }
 }

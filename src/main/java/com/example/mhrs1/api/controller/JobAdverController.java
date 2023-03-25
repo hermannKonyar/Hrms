@@ -19,7 +19,12 @@ public class JobAdverController {
 
     @GetMapping("/getAll")
     public DataResult<List<JobAdver>> getAll(){
-        return this.jobAdverManager.getAll();
+        return jobAdverManager.getAll();
+    }
+
+    @GetMapping("/getTrueStatus")
+    public Object getStatusTrue(int sayi){
+        return jobAdverManager.getStatus(sayi);
     }
 
     @PostMapping("/postData")
@@ -30,4 +35,21 @@ public class JobAdverController {
         Result result =jobAdverManager.postData(jobAdver);
         return result;
     }
+
+    @GetMapping("getCompanyAdver")
+    public Result getCompanyAdver( String companyName){
+        return this.jobAdverManager.getCompanyAdver(companyName);
+    }
+
+    @GetMapping("getCompanyAdverDesc")
+    public Result getCompanyAdverDesc(){
+        return this.jobAdverManager.getActiveJobAdvertisementOrderedByDesc();
+    }
+
+    @PostMapping("updateAdverStatus")
+    public Result updateAdverStatus(int id , boolean bool){
+        return this.jobAdverManager.updateAdverStatus(id,bool);
+    }
+
+
 }
